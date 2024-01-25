@@ -10,9 +10,9 @@ def post_list(request):
         {'posts': posts}
     )
 
-def post_detail(request, id):
+def post_detail(request, year, month, day, post):
     try:
-        post = Post.published.get(id = id)
+        post = Post.published.get(publish__year = year, publish__month = month, publish__day = day, slug = post)
     except Post.DoesNotExist:
         raise 'No Post found.'
 
