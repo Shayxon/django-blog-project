@@ -11,11 +11,17 @@
 <p>
   <a href="{% url 'blog:post_share' post.id %}">Share This Post</a>
 </p>
+<h2>Related posts</h2>
+{% for posts in similar_posts %}
+  <a href="{{ posts.get_absolute_url }}">{{posts.title}}</a><br>
+  {%empty%}
+  There are no posts related
 {% with comments.count as total_comments %}
 <h2>
   {{ total_comments }} comment{{ total_comments|pluralize }}
 </h2>
 {% endwith %}
+{% endfor %}
 {% for comment in comments %}
 <div class="comment">
   <p class="info">
